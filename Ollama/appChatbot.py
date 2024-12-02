@@ -45,17 +45,21 @@ def send_message():
     st.session_state.chat_history.insert(0, {"user": user_message, "bot": reply})
     st.session_state.user_message_input = ""  # Reset input field
 
-# Sidebar for system role customization
+# Sidebar for system role customization and Save button
 with st.sidebar:
     st.header("System Role Settings")
     height = calculate_height(st.session_state.system_role_content)
-    st.text_area(
+    # Directly update session state from text_area before button action
+    new_system_role_content = st.text_area(
         "Enter System Role Content:",
         value=st.session_state.system_role_content,
         key="system_role_content",
         height=height,
         help="Change the system's role here."
     )
+    if new_system_role_content != st.session_state.system_role_content:
+        st.session_state.system_role_content = new_system_role_content
+        st.success("System Role Content saved!")
 
 # Main Chat UI
 st.title("Chat with Ollama")
