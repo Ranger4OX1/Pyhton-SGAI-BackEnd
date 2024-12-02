@@ -1,0 +1,7 @@
+/.idea
+/app
+/diagrams
+/PlantUML
+/requirements.txt
+/venv
+/__pycache__
